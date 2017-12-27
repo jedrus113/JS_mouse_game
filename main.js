@@ -1,8 +1,7 @@
 var gameInterval;
 var gameCanvas;
 var eventCatcherDiv;
-var heroX;
-var heroY;
+var heroes = [];
 var coinX = 100;
 var coinY = 100;
 
@@ -13,6 +12,7 @@ function startLoading()
 
     gameCanvas = document.getElementById("GraphicsBox");
     drawText(gameCanvas.getContext("2d"), "Loading...", true, 50, 50);
+    heroes.push(new Hero());
 
     gameInterval = setInterval(hasLoaded, 250);
 }
@@ -46,25 +46,18 @@ function drawCoin(g)
     g.fill();
 }
 
-function drawTheHero(g)
-{
-    g.fillStyle = "#0000FF";
-    g.fillRect(heroX, heroY, 20, 20);
-}
 
 function startGame()
 {
-    heroX = 10;
-    heroY = 10;
-    drawTheHero(gameCanvas.getContext("2d"));
     gameInterval = setInterval(runGame, 25);
 }
 
 function canvasMove(E)
 {
     E = E || window.event;
-    heroX = E.pageX;
-    heroY = E.pageY;
+    heroes.forEach(function (element) {
+        element.moveTo(E.pageX, E.pageY)
+    });
 }
 
 function runGame()
@@ -73,17 +66,22 @@ function runGame()
         moveCoin();
     gameCanvas.getContext("2d").clearRect(0, 0, gameCanvas.width, gameCanvas.height);
     drawCoin(gameCanvas.getContext("2d"));
-    drawTheHero(gameCanvas.getContext("2d"));
 
+    heroes.forEach(function (element, index) {
+        element.draw();
+    });
 }
 
 function isTouchingCoin()
 {
     // 20x20 is the size of the hero.
     // The radius of the coin is 20.
-    if (heroX + 20 > coinX - 20 && heroX < coinX + 20
-        && heroY + 20 > coinY - 20 && heroY < coinY + 20)
-        return true;
+    return heroes.some(function (element, index) {
+        if (element.posX + 20 > coinX - 20 && element.posX < coinX + 20
+            && element.posY + 20 > coinY - 20 && element.posY < coinY + 20)
+            return true;
+    });
+
 }
 
 function moveCoin()
