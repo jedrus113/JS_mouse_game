@@ -84,6 +84,7 @@ function isTouchingCoin()
 
 function moveCoin()
 {
+    new Hero();
     coinX = Math.random() * 600; // width of draw area
     coinY = Math.random() * 400; // height of draw area
 }
