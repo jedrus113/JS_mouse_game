@@ -11,8 +11,13 @@ function heroMoveTo(x,y){
 
 class Hero {
     constructor(){
-        this.posX = 20;
-        this.posY = 20;
+        if (heroes.length > 0){
+            this.posX = heroes[i].posX;
+            this.posY = heroes[i].posY;
+        } else {
+            this.posY = 20;
+            this.posX = 20;
+        }
         heroes.push(this);
     }
 
