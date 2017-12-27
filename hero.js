@@ -1,12 +1,13 @@
 var heroes = [];
-var i = 0;
+var i = 0;  // index of the current head
+var toching = [];
 
 function heroMoveTo(x,y){
     i++;
     if (i >= heroes.length){
         i=0;
     }
-    heroes[i].moveTo(x,y)
+    return heroes[i].moveTo(x,y)
 }
 
 class Hero {
@@ -30,6 +31,27 @@ class Hero {
     moveTo(x,y){
         this.posX = x;
         this.posY = y;
+
+        return !this.checkCollisions(x,y);
+    }
+
+    checkCollisions(x, y){
+        if (toching.indexOf(i) === -1) {
+            toching.push(i);
+        }
+
+        return heroes.some(function(element, index) {
+            var tochID = toching.indexOf(index);
+            if (element.posX + 20 > x - 20 && element.posX < x + 20
+                && element.posY + 20 > y - 20 && element.posY < y + 20) {
+                if (tochID === -1) {
+                    return true;
+                }
+            }
+            else if(tochID >= 0){
+                toching.splice(tochID, 1);
+            }
+        });
     }
 
 }

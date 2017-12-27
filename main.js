@@ -54,7 +54,9 @@ function startGame()
 function canvasMove(E)
 {
     E = E || window.event;
-    heroMoveTo(E.pageX, E.pageY);
+    if (!heroMoveTo(E.pageX, E.pageY)){
+        clearInterval(gameInterval);
+    }
 
 }
 
