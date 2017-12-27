@@ -1,7 +1,6 @@
 var gameInterval;
 var gameCanvas;
 var eventCatcherDiv;
-var heroes = [];
 var coinX = 100;
 var coinY = 100;
 
@@ -12,7 +11,7 @@ function startLoading()
 
     gameCanvas = document.getElementById("GraphicsBox");
     drawText(gameCanvas.getContext("2d"), "Loading...", true, 50, 50);
-    heroes.push(new Hero());
+    new Hero();
 
     gameInterval = setInterval(hasLoaded, 250);
 }
@@ -55,9 +54,8 @@ function startGame()
 function canvasMove(E)
 {
     E = E || window.event;
-    heroes.forEach(function (element) {
-        element.moveTo(E.pageX, E.pageY)
-    });
+    heroMoveTo(E.pageX, E.pageY);
+
 }
 
 function runGame()
