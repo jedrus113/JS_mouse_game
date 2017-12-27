@@ -11,6 +11,7 @@ function startLoading()
 
     gameCanvas = document.getElementById("GraphicsBox");
     drawText(gameCanvas.getContext("2d"), "Loading...", true, 50, 50);
+    heroes = [];
     new Hero();
 
     gameInterval = setInterval(hasLoaded, 250);
@@ -56,6 +57,7 @@ function canvasMove(E)
     E = E || window.event;
     if (!heroMoveTo(E.pageX, E.pageY)){
         clearInterval(gameInterval);
+        startLoading();
     }
 
 }
