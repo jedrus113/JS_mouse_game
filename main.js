@@ -3,14 +3,15 @@ var gameCanvas;
 var eventCatcherDiv;
 var coinX = 100;
 var coinY = 100;
-var images = {};
+var images = [];
+var frame = 0;
 
 function startLoading()
 {
     eventCatcherDiv = document.getElementById("EventCatcher");
     // eventCatcherDiv events go here
 
-    images['strawberry'] = getImageFile("images/strawberry.png");
+    images.push(getImageFile("images/strawberry.png"));
 
     gameCanvas = document.getElementById("GraphicsBox");
     drawText(gameCanvas.getContext("2d"), "Loading...", true, 50, 50);
@@ -50,10 +51,9 @@ function drawText(g, stringValue, fillText, x, y)
 
 function drawCoin(g)
 {
-    g.fillStyle = "#FFD700";
-    g.beginPath();
-    g.arc(coinX, coinY, 20, 0, 2*Math.PI);
-    g.fill();
+
+    var myFrame = Math.round(frame) % 3;
+    g.drawImage(images[0], 30*myFrame, 0, 30, 30, coinX-15, coinY-15, 30, 30);
 }
 
 
@@ -74,6 +74,7 @@ function canvasMove(E)
 
 function runGame()
 {
+    frame += 0.1;
     if (isTouchingCoin())
         moveCoin();
     gameCanvas.getContext("2d").clearRect(0, 0, gameCanvas.width, gameCanvas.height);
