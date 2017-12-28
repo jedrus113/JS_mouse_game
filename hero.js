@@ -20,6 +20,7 @@ class Hero {
             this.posX = 20;
         }
         heroes.push(this);
+        toching.push(heroes.length - 1);
     }
 
     draw(){
