@@ -3,11 +3,14 @@ var gameCanvas;
 var eventCatcherDiv;
 var coinX = 100;
 var coinY = 100;
+var images = {};
 
 function startLoading()
 {
     eventCatcherDiv = document.getElementById("EventCatcher");
     // eventCatcherDiv events go here
+
+    images['strawberry'] = getImageFile("images/strawberry.png");
 
     gameCanvas = document.getElementById("GraphicsBox");
     drawText(gameCanvas.getContext("2d"), "Loading...", true, 50, 50);
@@ -15,6 +18,13 @@ function startLoading()
     new Hero();
 
     gameInterval = setInterval(hasLoaded, 250);
+}
+
+function getImageFile(filename)
+{
+    var imgVar = document.createElement("img");
+    imgVar.setAttribute("src", filename);
+    return imgVar;
 }
 
 function hasLoaded()
