@@ -53,7 +53,7 @@ function drawCoin(g)
 {
 
     var myFrame = Math.round(frame) % 3;
-    g.drawImage(images[0], 30*myFrame, 0, 30, 30, coinX-15, coinY-15, 30, 30);
+    g.drawImage(images[0], 30*myFrame, 0, 30, 30, coinX-15, coinY-15, 50, 50);
 }
 
 
