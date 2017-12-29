@@ -2,7 +2,6 @@ let gameInterval;
 let gameCanvas;
 let eventCatcherDiv;
 let images = [];
-let frame = 0;
 let scoreBox;
 let score;
 
@@ -38,9 +37,10 @@ function getImageFile(filename)
 function hasLoaded()
 {
 
-    eventCatcherDiv.addEventListener("mousemove", canvasMove);
+
     if (true) // Check to see if all info is loaded
     {
+        eventCatcherDiv.addEventListener("mousemove", canvasMove);
         clearInterval(gameInterval);
         setInterval(oneSecond, 1000);
         startGame();
@@ -76,7 +76,6 @@ function canvasMove(E)
 function runGame()
 {
     scoreBox.innerHTML = score;
-    frame += 0.1;
 
     gameCanvas.getContext("2d").clearRect(0, 0, gameCanvas.width, gameCanvas.height);
     drawFoods();
