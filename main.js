@@ -107,10 +107,11 @@ function gameOver(reason){
 
     drawText(g, "Score: " + score, true, 30, 240, 150);
 
-    drawText(g, "Time Survived: " + secondAlive + "s", true, 17, 225, 190);
-    drawText(g, "Good Audits:   " + eatenFreeshFood, true, 17, 225, 210);
-    drawText(g, "OK Audits:     " + eatenRootenFood, true, 17, 225, 230);
-    drawText(g, "Bad Audits Left: " + enemyTable.length, true, 17, 225, 250);
-    drawText(g, "Death reason: " + reason, true, 17, 225, 270);
+    let fontSize = 18;
+    drawText(g, "Time Survived: " + secondAlive + "s", true, fontSize, 220, 180);
+    drawText(g, "Good Audits: " + eatenFreeshFood, true, fontSize, 220, 205);
+    drawText(g, "OK Audits: " + eatenRootenFood, true, fontSize, 220, 230);
+    drawText(g, "Bad Audits Left: " + enemyTable.length, true, fontSize, 220, 255);
+    drawText(g, "Death reason: " + reason, true, fontSize, 220, 280);
 
 }
