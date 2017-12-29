@@ -57,8 +57,8 @@ class Hero {
 
         return heroes.some(function(element, index) {
             var tochID = toching.indexOf(index);
-            if (element.posX + 10 > x - 10 && element.posX < x + 10
-                && element.posY + 10 > y - 10 && element.posY < y + 10) {
+            if (element.posX + 8 > x - 8 && element.posX < x + 8
+                && element.posY + 8 > y - 8 && element.posY < y + 8) {
                 if (tochID === -1) {
                     return true;
                 }
