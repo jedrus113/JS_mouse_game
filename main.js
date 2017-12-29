@@ -5,18 +5,22 @@ var coinX = 100;
 var coinY = 100;
 var images = [];
 var frame = 0;
+var scoreBox;
+var score;
 
 function startLoading()
 {
     eventCatcherDiv = document.getElementById("EventCatcher");
     // eventCatcherDiv events go here
 
-    images.push(getImageFile("images/strawberry.png"));
+    images.push(getImageFile("images/meg_happy.svg"));
 
+    scoreBox = document.getElementById("scoreBox");
     gameCanvas = document.getElementById("GraphicsBox");
     drawText(gameCanvas.getContext("2d"), "Loading...", true, 50, 50);
     heroes = [];
     new Hero();
+    score = 0;
 
     gameInterval = setInterval(hasLoaded, 250);
 }
@@ -53,7 +57,8 @@ function drawCoin(g)
 {
 
     var myFrame = Math.round(frame) % 3;
-    g.drawImage(images[0], 30*myFrame, 0, 30, 30, coinX-15, coinY-15, 50, 50);
+    //g.drawImage(images[0], 30*myFrame, 0, 30, 30, coinX-15, coinY-15, 50, 50); //animation
+    g.drawImage(images[0], coinX-15, coinY-15, 50, 50);
 }
 
 
@@ -74,9 +79,12 @@ function canvasMove(E)
 
 function runGame()
 {
+    scoreBox.innerHTML = score;
     frame += 0.1;
-    if (isTouchingCoin())
+    if (isTouchingCoin()){
+        score += 1;
         moveCoin();
+    }
     gameCanvas.getContext("2d").clearRect(0, 0, gameCanvas.width, gameCanvas.height);
     drawCoin(gameCanvas.getContext("2d"));
 
