@@ -97,5 +97,6 @@ function gameOver(reason){
     var g = gameCanvas.getContext("2d");
     g.drawImage(images[3], 200, 0, 235, 400);
 
+    drawText(g, reason, true, 30, 250, 200);
 
 }
