@@ -6,6 +6,8 @@ var frame = 0;
 var scoreBox;
 var score;
 
+// TOOD: Add audits score that is sum of percentages collected audits div by all colected audits and red ones on board.
+
 function startLoading()
 {
     eventCatcherDiv = document.getElementById("EventCatcher");
@@ -14,8 +16,7 @@ function startLoading()
     images.push(getImageFile("images/meg_happy.svg"));
     images.push(getImageFile("images/meg_okay.svg"));
     images.push(getImageFile("images/meg_unhappy.svg"));
-    images.push(getImageFile("images/tailGameOver.png"));
-    images.push(getImageFile("images/auditGameOver.png"));
+    images.push(getImageFile("images/gameOver.png"));
 
     scoreBox = document.getElementById("scoreBox");
     gameCanvas = document.getElementById("GraphicsBox");
@@ -82,18 +83,12 @@ function runGame()
     drawHeroes();
 }
 
-
-function badAuditGameOver(){
-    gameCanvas.getContext("2d").drawImage(images[4], 200, 0, 235, 400);
-    gameOver();
-}
-
-function eatTailGameOver(){
-    gameCanvas.getContext("2d").drawImage(images[3], 200, 0, 235, 400);
-    gameOver();
-}
-
-function gameOver(){
+function gameOver(reason){
     clearInterval(gameInterval);
+    eventCatcherDiv.removeEventListener("mousemove", canvasMove);
+
+    var g = gameCanvas.getContext("2d");
+    g.drawImage(images[3], 200, 0, 235, 400);
+
 
 }
