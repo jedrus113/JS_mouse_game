@@ -5,7 +5,6 @@ let images = [];
 let scoreBox;
 let score;
 
-// TOOD: Add audits score that is sum of percentages collected audits div by all colected audits and red ones on board.
 
 function startLoading()
 {
@@ -94,9 +93,11 @@ function gameOver(reason){
     clearInterval(gameInterval);
     eventCatcherDiv.removeEventListener("mousemove", canvasMove);
 
-    var g = gameCanvas.getContext("2d");
+    let g = gameCanvas.getContext("2d");
     g.drawImage(images[3], 200, 0, 235, 400);
 
-    drawText(g, reason, true, 30, 250, 200);
+    drawText(g, "Score: " + score, true, 30, 240, 150);
+
+    drawText(g, "Death reason: " + reason, true, 17, 225, 285);
 
 }
