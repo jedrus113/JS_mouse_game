@@ -34,11 +34,19 @@ function getImageFile(filename)
     return imgVar;
 }
 
+function didEverythingLoad()
+{
+    for (let j = 0; j < images.length; j++)
+        if (!images[j].complete) return false;
+    return true;
+
+}
+
 function hasLoaded()
 {
 
 
-    if (true) // Check to see if all info is loaded
+    if (didEverythingLoad()) // Check to see if all info is loaded
     {
         eventCatcherDiv.addEventListener("mousemove", canvasMove);
         clearInterval(gameInterval);
