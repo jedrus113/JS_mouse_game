@@ -32,7 +32,7 @@ class Hero {
     draw(){
         var g = gameCanvas.getContext("2d");
         g.fillStyle = "#0000FF";
-        g.fillRect(this.posX, this.posY, 20, 20);
+        g.fillRect(this.posX-10, this.posY-10, 20, 20);
     }
 
     // return false if move is not possible
