@@ -105,9 +105,12 @@ function gameOver(reason){
     let g = gameCanvas.getContext("2d");
     g.drawImage(images[3], 200, 0, 235, 400);
 
-    drawText(g, "Score: " + score, true, 30, 240, 150);
+    drawText(g, "Score: " + score, true, 30, 240, 130);
+
+    let auditAverage = Math.round(score / (eatenFreeshFood + eatenRootenFood));
 
     let fontSize = 18;
+    drawText(g, "Avg Audit Score: " + auditAverage, true, fontSize, 238, 155);
     drawText(g, "Time Survived: " + secondAlive + "s", true, fontSize, 220, 180);
     drawText(g, "Good Audits: " + eatenFreeshFood, true, fontSize, 220, 205);
     drawText(g, "OK Audits: " + eatenRootenFood, true, fontSize, 220, 230);
