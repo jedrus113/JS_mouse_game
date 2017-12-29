@@ -26,6 +26,15 @@ function drawFoods(){
     });
 }
 
+function checkCollisionWithEnemy(x,y){
+    return enemyTable.some(function(element, index) {
+        if (element.posX + 20 > x - 20 && element.posX < x + 20
+            && element.posY + 20 > y - 20 && element.posY < y + 20) {
+                return true;
+        }
+    });
+}
+
 class Food{
     constructor(){
         this.seconds = 0;

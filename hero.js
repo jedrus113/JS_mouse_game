@@ -35,14 +35,19 @@ class Hero {
         g.fillRect(this.posX, this.posY, 20, 20);
     }
 
+    // return false if move is not possible
     moveTo(x,y){
         this.posX = x;
         this.posY = y;
 
-        return !this.checkCollisions(x,y);
+        if (this.checkCollisionWithTail(x,y) || checkCollisionWithEnemy(x,y)){
+            return false;
+        }
+        return true;
     }
 
-    checkCollisions(x, y){
+    // returns true if colision detected
+    checkCollisionWithTail(x, y){
         if (toching.indexOf(i) === -1) {
             toching.push(i);
         }
