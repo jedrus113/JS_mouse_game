@@ -43,6 +43,8 @@ class Hero {
         if (this.checkCollisionWithTail(x,y) || checkCollisionWithEnemy(x,y)){
             return false;
         }
+
+        eatFoodOn(x,y);
         return true;
     }
 

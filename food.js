@@ -1,5 +1,5 @@
-var changeToEnemyAt = 10;
-var changeToOrangeAt = 5;
+var changeToEnemyAt = 5;
+var changeToOrangeAt = 2;
 var foodCounter = 3; // first food after 3 sec
 var foodTable = [];
 var enemyTable = [];
@@ -15,6 +15,15 @@ function foodRotting(){
     foodTable.forEach(function (element, index){
         element.rotting();
     });
+}
+
+function eatFoodOn(x,y){
+    foodTable.forEach(function (element, index){
+        if (element.posX + 20 > x - 20 && element.posX < x + 20
+            && element.posY + 20 > y - 20 && element.posY < y + 20) {
+            element.eat();
+        }
+    })
 }
 
 function drawFoods(){
@@ -63,13 +72,16 @@ class Food{
 
     eat() {
         if (this.state === 0) {
-            score += (10 - this.seconds)*2;
+            score += (7 - this.seconds)*2;
         } else if (this.state === 1){
-            score += 10 - this.seconds;
+            score += 7 - this.seconds;
         } else {
             gameOver();
         }
         new Food();
+        new Hero();
+
+        delete foodTable[foodTable.indexOf(this)];
         delete this;
     }
 
