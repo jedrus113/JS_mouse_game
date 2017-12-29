@@ -40,12 +40,13 @@ class Hero {
         this.posX = x;
         this.posY = y;
 
-        if (this.checkCollisionWithTail(x,y) || checkCollisionWithEnemy(x,y)){
+        if (this.checkCollisionWithTail(x,y)){
+            eatTailGameOver();
             return false;
         }
 
         eatFoodOn(x,y);
-        return true;
+        return !checkCollisionWithEnemy(x,y);
     }
 
     // returns true if colision detected

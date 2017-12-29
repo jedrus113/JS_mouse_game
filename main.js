@@ -66,9 +66,7 @@ function startGame()
 function canvasMove(E)
 {
     E = E || window.event;
-    if (!heroMoveTo(E.pageX, E.pageY)){
-        gameOver();
-    }
+    heroMoveTo(E.pageX, E.pageY);
 
 }
 
@@ -80,6 +78,15 @@ function runGame()
     gameCanvas.getContext("2d").clearRect(0, 0, gameCanvas.width, gameCanvas.height);
     drawFoods();
     drawHeroes();
+}
+
+
+function badAuditGameOver(){
+    gameOver();
+}
+
+function eatTailGameOver(){
+    gameOver();
 }
 
 function gameOver(){
