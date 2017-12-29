@@ -1,7 +1,30 @@
 var changeToEnemyAt = 10;
 var changeToOrangeAt = 5;
+var foodCounter = 3; // first food after 3 sec
 var foodTable = [];
 var enemyTable = [];
+
+function foodRotting(){
+    foodCounter -= 1;
+
+    if(foodCounter === 0){
+        new Food();
+        foodCounter = 5; // each next food after
+    }
+
+    foodTable.forEach(function (element, index){
+        element.rotting();
+    });
+}
+
+function drawFoods(){
+    foodTable.forEach(function (element, index){
+        element.draw();
+    });
+    enemyTable.forEach(function (element, index){
+        element.draw();
+    });
+}
 
 class Food{
     constructor(){
@@ -12,7 +35,7 @@ class Food{
         foodTable.push(this);
     }
 
-    secondAdd(){
+    rotting(){
         this.seconds += 1;
         if (this.seconds === changeToEnemyAt){
             this.state = 2;
@@ -25,18 +48,19 @@ class Food{
     }
 
     draw(){
-        g.drawImage(images[this.state], this.posX-15, this.posY-15, 50, 50);
+        gameCanvas.getContext("2d").drawImage(images[this.state], this.posX-15, this.posY-15, 50, 50);
 
     }
 
     eat() {
-        if (this.state == 0) {
-            score += 10;
-        } else if (this.state == 1){
-            score += 5;
+        if (this.state === 0) {
+            score += (10 - this.seconds)*2;
+        } else if (this.state === 1){
+            score += 10 - this.seconds;
         } else {
             gameOver();
         }
+        new Food();
         delete this;
     }
 

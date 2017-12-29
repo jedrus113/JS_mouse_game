@@ -10,6 +10,12 @@ function heroMoveTo(x,y){
     return heroes[i].moveTo(x,y)
 }
 
+function drawHeroes(){
+    heroes.forEach(function (element, index) {
+        element.draw();
+    });
+}
+
 class Hero {
     constructor(){
         if (heroes.length > 0){

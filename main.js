@@ -1,8 +1,6 @@
 var gameInterval;
 var gameCanvas;
 var eventCatcherDiv;
-var coinX = 100;
-var coinY = 100;
 var images = [];
 var frame = 0;
 var scoreBox;
@@ -14,6 +12,8 @@ function startLoading()
     // eventCatcherDiv events go here
 
     images.push(getImageFile("images/meg_happy.svg"));
+    images.push(getImageFile("images/meg_okay.svg"));
+    images.push(getImageFile("images/meg_unhappy.svg"));
 
     scoreBox = document.getElementById("scoreBox");
     gameCanvas = document.getElementById("GraphicsBox");
@@ -39,8 +39,13 @@ function hasLoaded()
     if (true) // Check to see if all info is loaded
     {
         clearInterval(gameInterval);
+        setInterval(oneSecond, 1000);
         startGame();
     }
+}
+
+function oneSecond(){
+    foodRotting();
 }
 
 function drawText(g, stringValue, fillText, x, y)
@@ -53,15 +58,6 @@ function drawText(g, stringValue, fillText, x, y)
         g.strokeText(stringValue, x, y);
 }
 
-function drawCoin(g)
-{
-
-    var myFrame = Math.round(frame) % 3;
-    //g.drawImage(images[0], 30*myFrame, 0, 30, 30, coinX-15, coinY-15, 50, 50); //animation
-    g.drawImage(images[0], coinX-15, coinY-15, 50, 50);
-}
-
-
 function startGame()
 {
     gameInterval = setInterval(runGame, 25);
@@ -71,8 +67,7 @@ function canvasMove(E)
 {
     E = E || window.event;
     if (!heroMoveTo(E.pageX, E.pageY)){
-        clearInterval(gameInterval);
-        startLoading();
+        gameOver();
     }
 
 }
@@ -81,33 +76,13 @@ function runGame()
 {
     scoreBox.innerHTML = score;
     frame += 0.1;
-    if (isTouchingCoin()){
-        score += 1;
-        moveCoin();
-    }
+
     gameCanvas.getContext("2d").clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-    drawCoin(gameCanvas.getContext("2d"));
-
-    heroes.forEach(function (element, index) {
-        element.draw();
-    });
+    drawFoods();
+    drawHeroes();
 }
 
-function isTouchingCoin()
-{
-    // 20x20 is the size of the hero.
-    // The radius of the coin is 20.
-    return heroes.some(function (element, index) {
-        if (element.posX + 20 > coinX - 20 && element.posX < coinX + 20
-            && element.posY + 20 > coinY - 20 && element.posY < coinY + 20)
-            return true;
-    });
+function gameOver(){
+    clearInterval(gameInterval);
 
-}
-
-function moveCoin()
-{
-    new Hero();
-    coinX = Math.random() * 600; // width of draw area
-    coinY = Math.random() * 400; // height of draw area
 }
