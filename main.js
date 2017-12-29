@@ -1,10 +1,10 @@
-var gameInterval;
-var gameCanvas;
-var eventCatcherDiv;
-var images = [];
-var frame = 0;
-var scoreBox;
-var score;
+let gameInterval;
+let gameCanvas;
+let eventCatcherDiv;
+let images = [];
+let frame = 0;
+let scoreBox;
+let score;
 
 // TOOD: Add audits score that is sum of percentages collected audits div by all colected audits and red ones on board.
 

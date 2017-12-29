@@ -1,8 +1,8 @@
-var changeToEnemyAt = 5;
-var changeToOrangeAt = 2;
-var foodCounter = 1; // first food after 1 sec
-var foodTable = [];
-var enemyTable = [];
+const changeToEnemyAt = 5;
+const changeToOrangeAt = 2;
+let foodCounter = 1; // first food after 1 sec
+let foodTable = [];
+let enemyTable = [];
 
 function foodRotting(){
     foodCounter -= 1;

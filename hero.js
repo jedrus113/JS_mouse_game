@@ -1,6 +1,6 @@
-var heroes = [];
-var i = 0;  // index of the current head
-var toching = [];
+let heroes = [];
+let i = 0;  // index of the current head
+let toching = [];
 
 function heroMoveTo(x,y){
     i++;
