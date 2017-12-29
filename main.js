@@ -117,4 +117,6 @@ function gameOver(reason){
     drawText(g, "Bad Audits Left: " + enemyTable.length, true, fontSize, 220, 255);
     drawText(g, "Death reason: " + reason, true, fontSize, 220, 280);
 
+    drawText(g, "Programmer: Andrzej Dąbski", true, 15, 215, 385);
+    drawText(g, "andrew@medicaleguides.com", true, 15, 215, 395);
 }
