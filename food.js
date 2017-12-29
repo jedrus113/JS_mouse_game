@@ -1,6 +1,6 @@
 var changeToEnemyAt = 5;
 var changeToOrangeAt = 2;
-var foodCounter = 3; // first food after 3 sec
+var foodCounter = 1; // first food after 1 sec
 var foodTable = [];
 var enemyTable = [];
 
@@ -9,7 +9,7 @@ function foodRotting(){
 
     if(foodCounter === 0){
         new Food();
-        foodCounter = 5; // each next food after
+        foodCounter = 2; // each next food after
     }
 
     foodTable.forEach(function (element, index){
