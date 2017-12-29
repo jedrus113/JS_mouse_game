@@ -74,8 +74,10 @@ class Food{
     eat() {
         if (this.state === 0) {
             score += (7 - this.seconds)*2;
+            eatenFreeshFood += 1;
         } else if (this.state === 1){
             score += 7 - this.seconds;
+            eatenRootenFood += 1;
         } else {
             gameOver();
         }

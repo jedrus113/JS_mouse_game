@@ -1,9 +1,13 @@
 let gameInterval;
+let secondInterval;
 let gameCanvas;
 let eventCatcherDiv;
 let images = [];
 let scoreBox;
 let score;
+let secondAlive;
+let eatenFreeshFood;
+let eatenRootenFood;
 
 
 function startLoading()
@@ -22,6 +26,9 @@ function startLoading()
     heroes = [];
     new Hero();
     score = 0;
+    secondAlive = 0;
+    eatenFreeshFood = 0;
+    eatenRootenFood = 0;
 
     gameInterval = setInterval(hasLoaded, 250);
 }
@@ -49,12 +56,13 @@ function hasLoaded()
     {
         eventCatcherDiv.addEventListener("mousemove", canvasMove);
         clearInterval(gameInterval);
-        setInterval(oneSecond, 1000);
+        secondInterval = setInterval(oneSecond, 1000);
         startGame();
     }
 }
 
 function oneSecond(){
+    secondAlive += 1;
     foodRotting();
 }
 
@@ -90,6 +98,7 @@ function runGame()
 }
 
 function gameOver(reason){
+    clearInterval(secondInterval);
     clearInterval(gameInterval);
     eventCatcherDiv.removeEventListener("mousemove", canvasMove);
 
@@ -98,6 +107,10 @@ function gameOver(reason){
 
     drawText(g, "Score: " + score, true, 30, 240, 150);
 
-    drawText(g, "Death reason: " + reason, true, 17, 225, 285);
+    drawText(g, "Time Survived: " + secondAlive + "s", true, 17, 225, 190);
+    drawText(g, "Good Audits:   " + eatenFreeshFood, true, 17, 225, 210);
+    drawText(g, "OK Audits:     " + eatenRootenFood, true, 17, 225, 230);
+    drawText(g, "Bad Audits Left: " + enemyTable.length, true, 17, 225, 250);
+    drawText(g, "Death reason: " + reason, true, 17, 225, 270);
 
 }
