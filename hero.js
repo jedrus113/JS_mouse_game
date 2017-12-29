@@ -41,7 +41,7 @@ class Hero {
         this.posY = y;
 
         if (this.checkCollisionWithTail(x,y)){
-            gameOver("suicide (you eat your tail)");
+            gameOver("Bitten Tail");
             return false;
         }
 
