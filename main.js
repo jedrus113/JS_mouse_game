@@ -19,7 +19,7 @@ function startLoading()
 
     scoreBox = document.getElementById("scoreBox");
     gameCanvas = document.getElementById("GraphicsBox");
-    drawText(gameCanvas.getContext("2d"), "Loading...", true, 50, 50);
+    drawText(gameCanvas.getContext("2d"), "Loading...", true, 130, 20, 200);
     heroes = [];
     new Hero();
     score = 0;
@@ -59,10 +59,10 @@ function oneSecond(){
     foodRotting();
 }
 
-function drawText(g, stringValue, fillText, x, y)
+function drawText(g, stringValue, fillText, size, x, y)
 {
-    g.font = "30px Arial";
-    g.fillStyle = "#00FF00";
+    g.font = "" + size + "px Arial";
+    g.fillStyle = "#000000";
     if (fillText)
         g.fillText(stringValue, x, y);
     else
