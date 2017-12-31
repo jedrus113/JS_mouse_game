@@ -15,10 +15,10 @@ function startLoading()
     eventCatcherDiv = document.getElementById("EventCatcher");
     // eventCatcherDiv events go here
 
-    images.push(getImageFile("images/meg_happy.svg"));
-    images.push(getImageFile("images/meg_okay.svg"));
-    images.push(getImageFile("images/meg_unhappy.svg"));
-    images.push(getImageFile("images/gameOver.png"));
+    images.push(getImageFile("images/MEG/meg_happy.svg"));
+    images.push(getImageFile("images/MEG/meg_okay.svg"));
+    images.push(getImageFile("images/MEG/meg_unhappy.svg"));
+    images.push(getImageFile("images/MEG/gameOver.png"));
 
     scoreBox = document.getElementById("scoreBox");
     gameCanvas = document.getElementById("GraphicsBox");
