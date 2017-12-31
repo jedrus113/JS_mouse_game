@@ -12,8 +12,10 @@ function heroMoveTo(x,y){
 
 function drawHeroes(){
     heroes.forEach(function (element, index) {
-        element.draw();
+        if (index != i)
+            element.draw();
     });
+    heroes[i].draw(); // head draw as last
 }
 
 class Hero {
