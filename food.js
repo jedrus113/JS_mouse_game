@@ -1,5 +1,4 @@
-const changeToEnemyAt = 5;
-const changeToOrangeAt = 2;
+let gameOverMessageOnEatBadFood = "Melted snowman";
 let foodImagesIndex = [];   // here images are in table because of animation
 let lastAnimationStep;
 let foodCounter = 1; // first food after 1 sec
@@ -10,6 +9,7 @@ let enemyTable = [];
 function loadingFood(){
     let etableImageSrc = ["images/Santa/snowman0.png", "images/Santa/snowman1.png", "images/Santa/snowman2.png", "images/Santa/snowman3.png", "images/Santa/snowman4.png"];
     if (MEG_VERSION){
+        gameOverMessageOnEatBadFood = "Bad Audit";
         etableImageSrc = ["images/MEG/meg_happy.svg", "images/MEG/meg_okay.svg",  "images/MEG/meg_unhappy.svg"];
     }
 
@@ -56,7 +56,7 @@ function checkCollisionWithEnemy(x,y){
     return enemyTable.some(function(element, index) {
         if (element.posX + 20 > x - 20 && element.posX < x + 20
             && element.posY + 20 > y - 20 && element.posY < y + 20) {
-                gameOver("Bad Audit");
+                gameOver(gameOverMessageOnEatBadFood);
                 return true;
         }
     });
@@ -94,7 +94,7 @@ class Food{
 
     eat() {
         if (this.stage === lastAnimationStep){
-            gameOver("Bad Audit");
+            gameOver(gameOverMessageOnEatBadFood);
         } else if(this.stage < lastAnimationStep -1) {
             score += (lastAnimationStep - this.stage)*2;
             eatenFreeshFood += 1;
