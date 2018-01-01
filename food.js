@@ -1,4 +1,4 @@
-let gameOverMessageOnEatBadFood = "Melted snowman";
+let gameOverMessageOnEatBadFood = "water";
 let foodImagesIndex = [];   // here images are in table because of animation
 let lastAnimationStep;
 let foodCounter = 1; // first food after 1 sec

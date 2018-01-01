@@ -1,7 +1,7 @@
 let gameOverImageIndex;
 let averageScoreMessage = "Average Score: ";
-let fastPointsMessage = "Full snowmans: ";
-let slowPointsMessage = "Half-melted snowmans: ";
+let fastPointsMessage = "Eaten snowmans: ";
+let slowPointsMessage = "Drinken snowmans: ";
 let enemiesLeftMessage = "Melted snowmans: ";
 let gameOverReasonMessage = "Melted by: ";
 let emailaddress = "dabski.andrzej@gmail.com";
