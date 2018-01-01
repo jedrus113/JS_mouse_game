@@ -1,12 +1,26 @@
+let gameOverImageIndex;
 
+function loadingScreens(){
+    let gameOverImageSrc = "images/MEG/gameOver.png";
+    if (MEG_VERSION){
+        gameOverImageSrc = "images/MEG/gameOver.png";
+    }
+
+    gameOverImageIndex = images.length;
+    images.push(getImageFile(gameOverImageSrc));
+}
 
 function showLoadingScreen(){
     drawText(gameCanvas.getContext("2d"), "Loading...", true, 130, 20, 200);
 }
 
+function getGameOverImage(){
+    return images[gameOverImageIndex];
+}
+
 function showGameOverScreen(reason){
     let g = gameCanvas.getContext("2d");
-    g.drawImage(images[3], 200, 0, 235, 400);
+    g.drawImage(getGameOverImage(), 200, 0, 235, 400);
 
     drawText(g, "Score: " + score, true, 30, 240, 130);
 

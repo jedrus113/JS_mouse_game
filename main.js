@@ -1,10 +1,8 @@
 const  MEG_VERSION = true;
 
 if (MEG_VERSION){
-    const  gameOverImageSrc ="images/MEG/gameOver.png";
     const etableImageSrc = ["images/MEG/meg_happy.svg", "images/MEG/meg_okay.svg",  "images/MEG/meg_unhappy.svg"];
 } else {
-    const  gameOverImageSrc ="images/MEG/gameOver.png";
     const etableImageSrc = ["images/Santa/snowman0.png", "images/Santa/snowman1.png", "images/Santa/snowman2.png", "images/Santa/snowman3.png", "images/Santa/snowman4.png"];
 }
 const heroImageSrc = ["images/hero0.png", "images/hero1.png"];
@@ -26,6 +24,8 @@ function startLoading()
 {
     gameCanvas = document.getElementById("GraphicsBox");
     showLoadingScreen();
+
+    loadingScreens();
 
     images.push(getImageFile("images/MEG/meg_happy.svg"));
     images.push(getImageFile("images/MEG/meg_okay.svg"));
