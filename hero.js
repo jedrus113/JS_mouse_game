@@ -3,9 +3,7 @@ let heroTailImagesIndex = [];   // tail animation
 let heroes = [];
 let i = 0;  // index of the current head
 let toching = [];
-
-
-// TODO: HERO FACES DISPLAY
+let animationStep = 0;
 
 function loadingHero(){
     const heroImageSrc = ["images/hero0.png", "images/hero1.png"];
@@ -20,6 +18,13 @@ function loadingHero(){
         images.push(getImageFile(src));
     });
 
+}
+
+function heroAnimationNext(){
+    animationStep += 1;
+    if (animationStep >= heroHeadImagesIndex.length){  // hero animation lenght is based on haed animation lenght
+        animationStep = 0;
+    }
 }
 
 function heroMoveTo(x,y){
@@ -47,25 +52,17 @@ class Hero {
             this.posY = 20;
             this.posX = 20;
         }
-        this.animationStep = 0;
         heroes.push(this);
         toching.push(heroes.length - 1);
     }
 
     draw(){
         var g = gameCanvas.getContext("2d");
-        this.animationStep += 1;
         let index;
         if (heroes[i] == this){ // this is head
-            if (this.animationStep >= heroHeadImagesIndex.length){
-                this.animationStep = 0;
-            }
-            index = heroHeadImagesIndex[this.animationStep];
+            index = heroHeadImagesIndex[animationStep];
         } else {
-            if (this.animationStep >= heroTailImagesIndex.length){
-                this.animationStep = 0;
-            }
-            index = heroTailImagesIndex[this.animationStep];
+            index = heroTailImagesIndex[animationStep];
         }
         gameCanvas.getContext("2d").drawImage(images[index], this.posX-10, this.posY-10, 20, 20);
     }

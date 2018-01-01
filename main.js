@@ -68,6 +68,7 @@ function hasLoaded()
 function oneSecond(){
     secondAlive += 1;
     foodRotting();
+    heroAnimationNext();
 }
 
 function drawText(g, stringValue, fillText, size, x, y)
