@@ -46,5 +46,5 @@ function showGameOverScreen(reason){
     drawText(g, gameOverReasonMessage + reason, true, fontSize, 220, 280);
 
     drawText(g, "Programmer: Andrzej Dąbski", true, 15, 215, 385);
-    drawText(g, dabski.andrzej@gmail.com, true, 15, 215, 397);
+    drawText(g, "dabski.andrzej@gmail.com", true, 15, 215, 397);
 }
