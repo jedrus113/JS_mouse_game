@@ -23,6 +23,12 @@ function loadingFood(){
     lastAnimationStep = foodImagesIndex.length-1;
 }
 
+function foodRestart(){
+    foodCounter = 1;
+    foodTable = [];
+    enemyTable = [];
+}
+
 function foodRotting(){
     foodCounter -= 1;
 

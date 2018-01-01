@@ -104,4 +104,11 @@ function gameOver(reason){
     clearInterval(gameInterval);
     eventCatcherDiv.removeEventListener("mousemove", canvasMove);
     showGameOverScreen(reason);
+    eventCatcherDiv.addEventListener("click", restart);
+}
+
+function restart(){
+    heroRestart();
+    foodRestart();
+    hasLoaded();
 }

@@ -4,7 +4,6 @@ let fastPointsMessage = "Eaten snowmans: ";
 let slowPointsMessage = "Drinken snowmans: ";
 let enemiesLeftMessage = "Melted snowmans: ";
 let gameOverReasonMessage = "Melted by: ";
-let emailaddress = "dabski.andrzej@gmail.com";
 
 function loadingScreens(){
     let gameOverImageSrc = "images/Santa/gameOver.png";

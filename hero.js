@@ -1,5 +1,6 @@
 let heroHeadImagesIndex = [];   // head animation
 let heroTailImagesIndex = [];   // tail animation
+
 let heroes = [];
 let i = 0;  // index of the current head
 let toching = [];
@@ -18,6 +19,13 @@ function loadingHero(){
         images.push(getImageFile(src));
     });
 
+}
+
+function heroRestart(){
+    heroes = [];
+    i=0;
+    toching = [];
+    animationStep = 0;
 }
 
 function heroAnimationNext(){
