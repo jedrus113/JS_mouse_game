@@ -47,14 +47,27 @@ class Hero {
             this.posY = 20;
             this.posX = 20;
         }
+        this.animationStep = 0;
         heroes.push(this);
         toching.push(heroes.length - 1);
     }
 
     draw(){
         var g = gameCanvas.getContext("2d");
-        g.fillStyle = "#0000FF";
-        g.fillRect(this.posX-10, this.posY-10, 20, 20);
+        this.animationStep += 1;
+        let index;
+        if (heroes[i] == this){ // this is head
+            if (this.animationStep >= heroHeadImagesIndex.length){
+                this.animationStep = 0;
+            }
+            index = heroHeadImagesIndex[this.animationStep];
+        } else {
+            if (this.animationStep >= heroTailImagesIndex.length){
+                this.animationStep = 0;
+            }
+            index = heroTailImagesIndex[this.animationStep];
+        }
+        gameCanvas.getContext("2d").drawImage(images[index], this.posX-10, this.posY-10, 20, 20);
     }
 
     // return false if move is not possible
