@@ -1,8 +1,22 @@
 const changeToEnemyAt = 5;
 const changeToOrangeAt = 2;
+let foodImagesIndex = [];   // here images are in table because of animation
 let foodCounter = 1; // first food after 1 sec
 let foodTable = [];
 let enemyTable = [];
+
+
+function loadingFood(){
+    let etableImageSrc = ["images/Santa/snowman0.png", "images/Santa/snowman1.png", "images/Santa/snowman2.png", "images/Santa/snowman3.png", "images/Santa/snowman4.png"];
+    if (MEG_VERSION){
+        etableImageSrc = ["images/MEG/meg_happy.svg", "images/MEG/meg_okay.svg",  "images/MEG/meg_unhappy.svg"];
+    }
+
+    etableImageSrc.forEach(function (src) {
+        foodImagesIndex.push(images.length);
+        images.push(getImageFile(src));
+    });
+}
 
 function foodRotting(){
     foodCounter -= 1;
@@ -67,7 +81,8 @@ class Food{
     }
 
     draw(){
-        gameCanvas.getContext("2d").drawImage(images[this.state], this.posX-15, this.posY-15, 50, 50);
+        let index = foodImagesIndex[this.state];
+        gameCanvas.getContext("2d").drawImage(images[index], this.posX-15, this.posY-15, 50, 50);
 
     }
 

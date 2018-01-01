@@ -1,6 +1,26 @@
+let heroHeadImagesIndex = [];   // head animation
+let heroTailImagesIndex = [];   // tail animation
 let heroes = [];
 let i = 0;  // index of the current head
 let toching = [];
+
+
+// TODO: HERO FACES DISPLAY
+
+function loadingHero(){
+    const heroImageSrc = ["images/hero0.png", "images/hero1.png"];
+    const tailImageSrc = ["images/tail0.png", "images/tail1.png"];
+
+    heroImageSrc.forEach(function (src) {
+        heroHeadImagesIndex.push(images.length);
+        images.push(getImageFile(src));
+    });
+    tailImageSrc.forEach(function (src) {
+        heroTailImagesIndex.push(images.length);
+        images.push(getImageFile(src));
+    });
+
+}
 
 function heroMoveTo(x,y){
     i++;

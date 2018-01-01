@@ -1,12 +1,5 @@
 const  MEG_VERSION = true;
 
-if (MEG_VERSION){
-    const etableImageSrc = ["images/MEG/meg_happy.svg", "images/MEG/meg_okay.svg",  "images/MEG/meg_unhappy.svg"];
-} else {
-    const etableImageSrc = ["images/Santa/snowman0.png", "images/Santa/snowman1.png", "images/Santa/snowman2.png", "images/Santa/snowman3.png", "images/Santa/snowman4.png"];
-}
-const heroImageSrc = ["images/hero0.png", "images/hero1.png"];
-const tailImageSrc = ["images/tail0.png", "images/tail1.png"];
 
 let gameInterval;
 let secondInterval;
@@ -26,21 +19,11 @@ function startLoading()
     showLoadingScreen();
 
     loadingScreens();
-
-    images.push(getImageFile("images/MEG/meg_happy.svg"));
-    images.push(getImageFile("images/MEG/meg_okay.svg"));
-    images.push(getImageFile("images/MEG/meg_unhappy.svg"));
-    images.push(getImageFile("images/MEG/gameOver.png"));
+    loadingFood();
+    loadingHero();
 
     eventCatcherDiv = document.getElementById("EventCatcher");
     scoreBox = document.getElementById("scoreBox");
-
-    heroes = [];
-    new Hero();
-    score = 0;
-    secondAlive = 0;
-    eatenFreeshFood = 0;
-    eatenRootenFood = 0;
 
     // start checking if images has been loaded
     gameInterval = setInterval(hasLoaded, 250);
@@ -67,8 +50,16 @@ function hasLoaded()
 
     if (didEverythingLoad()) // Check to see if all info is loaded
     {
-        eventCatcherDiv.addEventListener("mousemove", canvasMove);
         clearInterval(gameInterval);
+
+        heroes = [];
+        new Hero();
+        score = 0;
+        secondAlive = 0;
+        eatenFreeshFood = 0;
+        eatenRootenFood = 0;
+
+        eventCatcherDiv.addEventListener("mousemove", canvasMove);
         secondInterval = setInterval(oneSecond, 1000);
         startGame();
     }
