@@ -1,7 +1,7 @@
 let gameOverImageIndex;
 
 function loadingScreens(){
-    let gameOverImageSrc = "images/MEG/gameOver.png";
+    let gameOverImageSrc = "images/Santa/gameOver.png";
     if (MEG_VERSION){
         gameOverImageSrc = "images/MEG/gameOver.png";
     }

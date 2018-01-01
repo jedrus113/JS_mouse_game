@@ -1,5 +1,4 @@
-const  MEG_VERSION = true;
-
+const MEG_VERSION = true;
 
 let gameInterval;
 let secondInterval;
