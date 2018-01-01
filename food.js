@@ -89,9 +89,12 @@ class Food{
     eat() {
         if (this.stage === lastAnimationStep){
             gameOver("Bad Audit");
-        } else {
+        } else if(this.stage < lastAnimationStep -1) {
             score += (lastAnimationStep - this.stage)*2;
             eatenFreeshFood += 1;
+        } else {
+            score += (lastAnimationStep - this.stage);
+            eatenRootenFood += 1;
         }
         new Food();
         new Hero();
