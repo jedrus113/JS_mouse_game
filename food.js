@@ -1,8 +1,25 @@
 const changeToEnemyAt = 5;
 const changeToOrangeAt = 2;
+let foodImagesIndex = [];   // here images are in table because of animation
+let lastAnimationStep;
 let foodCounter = 1; // first food after 1 sec
 let foodTable = [];
 let enemyTable = [];
+
+
+function loadingFood(){
+    let etableImageSrc = ["images/Santa/snowman0.png", "images/Santa/snowman1.png", "images/Santa/snowman2.png", "images/Santa/snowman3.png", "images/Santa/snowman4.png"];
+    if (MEG_VERSION){
+        etableImageSrc = ["images/MEG/meg_happy.svg", "images/MEG/meg_okay.svg",  "images/MEG/meg_unhappy.svg"];
+    }
+
+    etableImageSrc.forEach(function (src) {
+        foodImagesIndex.push(images.length);
+        images.push(getImageFile(src));
+    });
+
+    lastAnimationStep = foodImagesIndex.length-1;
+}
 
 function foodRotting(){
     foodCounter -= 1;
@@ -47,39 +64,37 @@ function checkCollisionWithEnemy(x,y){
 
 class Food{
     constructor(){
-        this.seconds = 0;
-        this.state = 0;
+        this.stage = -1;
         this.posX = Math.random() * 600; // width of draw area
         this.posY = Math.random() * 400; // height of draw area
         foodTable.push(this);
     }
 
     rotting(){
-        this.seconds += 1;
-        if (this.seconds === changeToEnemyAt){
-            this.state = 2;
+        this.stage += 1;
+        if (this.stage === lastAnimationStep){
             enemyTable.push(this);
             var index = foodTable.indexOf(this);
             delete foodTable[index];
-        } else if (this.seconds === changeToOrangeAt){
-            this.state = 1;
         }
     }
 
     draw(){
-        gameCanvas.getContext("2d").drawImage(images[this.state], this.posX-15, this.posY-15, 50, 50);
-
+        if (this.stage >= 0){
+            let index = foodImagesIndex[this.stage];
+            gameCanvas.getContext("2d").drawImage(images[index], this.posX-15, this.posY-15, 50, 50);
+        }
     }
 
     eat() {
-        if (this.state === 0) {
-            score += (7 - this.seconds)*2;
+        if (this.stage === lastAnimationStep){
+            gameOver("Bad Audit");
+        } else if(this.stage < lastAnimationStep -1) {
+            score += (lastAnimationStep - this.stage)*2;
             eatenFreeshFood += 1;
-        } else if (this.state === 1){
-            score += 7 - this.seconds;
-            eatenRootenFood += 1;
         } else {
-            gameOver();
+            score += (lastAnimationStep - this.stage);
+            eatenRootenFood += 1;
         }
         new Food();
         new Hero();

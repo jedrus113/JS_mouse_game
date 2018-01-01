@@ -1,3 +1,6 @@
+const  MEG_VERSION = true;
+
+
 let gameInterval;
 let secondInterval;
 let gameCanvas;
@@ -12,24 +15,17 @@ let eatenRootenFood;
 
 function startLoading()
 {
-    eventCatcherDiv = document.getElementById("EventCatcher");
-    // eventCatcherDiv events go here
-
-    images.push(getImageFile("images/MEG/meg_happy.svg"));
-    images.push(getImageFile("images/MEG/meg_okay.svg"));
-    images.push(getImageFile("images/MEG/meg_unhappy.svg"));
-    images.push(getImageFile("images/MEG/gameOver.png"));
-
-    scoreBox = document.getElementById("scoreBox");
     gameCanvas = document.getElementById("GraphicsBox");
-    drawText(gameCanvas.getContext("2d"), "Loading...", true, 130, 20, 200);
-    heroes = [];
-    new Hero();
-    score = 0;
-    secondAlive = 0;
-    eatenFreeshFood = 0;
-    eatenRootenFood = 0;
+    showLoadingScreen();
 
+    loadingScreens();
+    loadingFood();
+    loadingHero();
+
+    eventCatcherDiv = document.getElementById("EventCatcher");
+    scoreBox = document.getElementById("scoreBox");
+
+    // start checking if images has been loaded
     gameInterval = setInterval(hasLoaded, 250);
 }
 
@@ -54,8 +50,16 @@ function hasLoaded()
 
     if (didEverythingLoad()) // Check to see if all info is loaded
     {
-        eventCatcherDiv.addEventListener("mousemove", canvasMove);
         clearInterval(gameInterval);
+
+        heroes = [];
+        new Hero();
+        score = 0;
+        secondAlive = 0;
+        eatenFreeshFood = 0;
+        eatenRootenFood = 0;
+
+        eventCatcherDiv.addEventListener("mousemove", canvasMove);
         secondInterval = setInterval(oneSecond, 1000);
         startGame();
     }
@@ -64,6 +68,7 @@ function hasLoaded()
 function oneSecond(){
     secondAlive += 1;
     foodRotting();
+    heroAnimationNext();
 }
 
 function drawText(g, stringValue, fillText, size, x, y)
@@ -101,22 +106,5 @@ function gameOver(reason){
     clearInterval(secondInterval);
     clearInterval(gameInterval);
     eventCatcherDiv.removeEventListener("mousemove", canvasMove);
-
-    let g = gameCanvas.getContext("2d");
-    g.drawImage(images[3], 200, 0, 235, 400);
-
-    drawText(g, "Score: " + score, true, 30, 240, 130);
-
-    let auditAverage = Math.round(score / (eatenFreeshFood + eatenRootenFood));
-
-    let fontSize = 18;
-    drawText(g, "Avg Audit Score: " + auditAverage, true, fontSize, 238, 155);
-    drawText(g, "Time Survived: " + secondAlive + "s", true, fontSize, 220, 180);
-    drawText(g, "Good Audits: " + eatenFreeshFood, true, fontSize, 220, 205);
-    drawText(g, "OK Audits: " + eatenRootenFood, true, fontSize, 220, 230);
-    drawText(g, "Bad Audits Left: " + enemyTable.length, true, fontSize, 220, 255);
-    drawText(g, "Death reason: " + reason, true, fontSize, 220, 280);
-
-    drawText(g, "Programmer: Andrzej Dąbski", true, 15, 215, 385);
-    drawText(g, "andrew@medicaleguides.com", true, 15, 215, 397);
+    showGameOverScreen(reason);
 }
