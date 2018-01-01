@@ -24,17 +24,16 @@ let eatenRootenFood;
 
 function startLoading()
 {
-    eventCatcherDiv = document.getElementById("EventCatcher");
+    gameCanvas = document.getElementById("GraphicsBox");
+    showLoadingScreen();
 
     images.push(getImageFile("images/MEG/meg_happy.svg"));
     images.push(getImageFile("images/MEG/meg_okay.svg"));
     images.push(getImageFile("images/MEG/meg_unhappy.svg"));
     images.push(getImageFile("images/MEG/gameOver.png"));
 
+    eventCatcherDiv = document.getElementById("EventCatcher");
     scoreBox = document.getElementById("scoreBox");
-    gameCanvas = document.getElementById("GraphicsBox");
-
-    showLoadingScreen();
 
     heroes = [];
     new Hero();
