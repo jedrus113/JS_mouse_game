@@ -42,6 +42,7 @@ function startLoading()
     eatenFreeshFood = 0;
     eatenRootenFood = 0;
 
+    // start checking if images has been loaded
     gameInterval = setInterval(hasLoaded, 250);
 }
 
