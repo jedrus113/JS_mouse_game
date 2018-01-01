@@ -1,4 +1,4 @@
-const  MEG_VERSION = false;
+const  MEG_VERSION = true;
 
 
 let gameInterval;
