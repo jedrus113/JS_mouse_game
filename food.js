@@ -64,6 +64,7 @@ function checkCollisionWithEnemy(x,y){
 
 class Food{
     constructor(){
+        this.rooting = false;
         this.stage = -1;
         this.posX = Math.random() * 600; // width of draw area
         this.posY = Math.random() * 400; // height of draw area
@@ -71,15 +72,20 @@ class Food{
     }
 
     rotting(){
-        this.stage += 1;
-        if (this.stage === lastAnimationStep){
-            enemyTable.push(this);
-            var index = foodTable.indexOf(this);
-            delete foodTable[index];
-        }
+        this.rooting = true;
     }
 
     draw(){
+        if (this.rooting) {
+            this.rooting = false;
+            this.stage += 1;
+            if (this.stage === lastAnimationStep){
+                enemyTable.push(this);
+                var index = foodTable.indexOf(this);
+                delete foodTable[index];
+            }
+        }
+
         if (this.stage >= 0){
             let index = foodImagesIndex[this.stage];
             gameCanvas.getContext("2d").drawImage(images[index], this.posX-15, this.posY-15, 50, 50);

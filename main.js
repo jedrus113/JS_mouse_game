@@ -46,8 +46,6 @@ function didEverythingLoad()
 
 function hasLoaded()
 {
-
-
     if (didEverythingLoad()) // Check to see if all info is loaded
     {
         clearInterval(gameInterval);
