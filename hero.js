@@ -22,9 +22,6 @@ function loadingHero(){
 
 function heroAnimationNext(){
     animationStep += 1;
-    if (animationStep >= heroHeadImagesIndex.length){  // hero animation lenght is based on haed animation lenght
-        animationStep = 0;
-    }
 }
 
 function heroMoveTo(x,y){
@@ -45,6 +42,7 @@ function drawHeroes(){
 
 class Hero {
     constructor(){
+        this.animation = animationStep;
         if (heroes.length > 0){
             this.posX = heroes[i].posX;
             this.posY = heroes[i].posY;
@@ -59,10 +57,11 @@ class Hero {
     draw(){
         var g = gameCanvas.getContext("2d");
         let index;
+        let id = animationStep - this.animation
         if (heroes[i] == this){ // this is head
-            index = heroHeadImagesIndex[animationStep];
+            index = heroHeadImagesIndex[id % heroHeadImagesIndex.length];
         } else {
-            index = heroTailImagesIndex[animationStep];
+            index = heroTailImagesIndex[id % heroTailImagesIndex.length];
         }
         gameCanvas.getContext("2d").drawImage(images[index], this.posX-10, this.posY-10, 20, 20);
     }
