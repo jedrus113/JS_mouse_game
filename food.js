@@ -4,11 +4,13 @@ let lastAnimationStep;
 let foodCounter = 1; // first food after 1 sec
 let foodTable = [];
 let enemyTable = [];
+let yDetectionEnemyFix = -10;
 
 
 function loadingFood(){
     let etableImageSrc = ["images/Santa/snowman0.png", "images/Santa/snowman1.png", "images/Santa/snowman2.png", "images/Santa/snowman3.png", "images/Santa/snowman4.png"];
     if (MEG_VERSION){
+        yDetectionEnemyFix = 20;
         gameOverMessageOnEatBadFood = "Bad Audit";
         etableImageSrc = ["images/MEG/meg_happy.svg", "images/MEG/meg_okay.svg",  "images/MEG/meg_unhappy.svg"];
     }
@@ -55,7 +57,7 @@ function drawFoods(){
 function checkCollisionWithEnemy(x,y){
     return enemyTable.some(function(element, index) {
         if (element.posX + 20 > x - 20 && element.posX < x + 20
-            && element.posY + 20 > y - 20 && element.posY < y + 20) {
+            && element.posY + 20 > y - 20 && element.posY < y + yDetectionEnemyFix) {
                 gameOver(gameOverMessageOnEatBadFood);
                 return true;
         }
