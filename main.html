@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <script src='http://www.kongregate.com/javascripts/kongregate_api.js'></script>
     <script type="text/javascript" src="screens.js"></script>
     <script type="text/javascript" src="food.js"></script>
     <script type="text/javascript" src="hero.js"></script>
@@ -16,14 +17,15 @@
     </div>
 </div>
 <script>
+    // Load the API
+    var kongregate;
+    kongregateAPI.loadAPI(onComplete);
 
-    // For those of you interested in the Kongregate API, take a look at this later on.
-    // For now, skip this commented code block.
-
-        var kongregate;
-        var LoadingAPI = window.parent.LoadingAPI;
-        if (LoadingAPI)
-            kongregate = window.parent.kongregateAPI.getAPI();
+    // Callback function
+    function onComplete(){
+        // Set the global kongregate API object
+        kongregate = kongregateAPI.getAPI();
+    }
 
     // Initialize
     startLoading()
