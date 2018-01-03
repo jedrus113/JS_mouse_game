@@ -46,4 +46,9 @@ function showGameOverScreen(reason){
 
     drawText(g, "Programmer: Andrzej Dąbski", true, 15, 215, 385);
     drawText(g, "dabski.andrzej@gmail.com", true, 15, 215, 397);
+
+    // send statistics to kongregate:
+    kongregate.stats.submit('Score', score);
+    kongregate.stats.submit('Time Survived', secondAlive);
+
 }
